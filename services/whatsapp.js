@@ -9,7 +9,10 @@ const messages = []; // Armazenar mensagens recebidas
 function createClient(userId) {
     const client = new Client({
         authStrategy: new LocalAuth({ clientId: userId }), // Salvar a sessão localmente
-        puppeteer: { headless: true },
+        puppeteer: { 
+            headless: true,
+            args: ['--no-sandbox', '--disable-setuid-sandbox'], // Adicione essas opções
+        },
     });
 
     client.on('qr', (qr) => {
