@@ -1,8 +1,41 @@
 // routes/whatsapp.js
 const express = require('express');
-const { clients, MessageMedia, isClientReady } = require('../services/whatsapp');
+const { clients, MessageMedia, isClientReady, messages } = require('../services/whatsapp');
 const { formatNumber } = require('../utils/formatter');
 const router = express.Router();
+
+// Endpoint para receber mensagens via webhook
+router.post('/webhook', (req, res) => {
+    const { from, body, timestamp, type, isMedia, isGroupMsg, sender, media } = req.body;
+
+    if (!from || !body) {
+        return res.status(400).json({ error: 'Dados inválidos' });
+    }
+
+    // Salvar a mensagem recebida
+    messages.push({
+        from,
+        body,
+        timestamp,
+        type,
+        isMedia,
+        isGroupMsg,
+        sender,
+        media,
+    });
+
+    console.log(`Mensagem recebida de ${from} (${sender.name}): ${body}`);
+    console.log('Detalhes da mensagem:', {
+        timestamp,
+        type,
+        isMedia,
+        isGroupMsg,
+        media: media ? `[${media.mimetype}]` : 'Nenhuma',
+    });
+
+    // Responder com sucesso
+    res.json({ success: true });
+});
 
 // Enviar mensagem de texto
 router.post('/send', async (req, res) => {

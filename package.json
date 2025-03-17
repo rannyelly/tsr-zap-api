@@ -18,6 +18,7 @@
   "homepage": "https://github.com/rannyelly/tsr-zap-api#readme",
   "description": "",
   "dependencies": {
+    "axios": "^1.8.3",
     "bcryptjs": "^3.0.2",
     "body-parser": "^1.20.3",
     "cors": "^2.8.5",
