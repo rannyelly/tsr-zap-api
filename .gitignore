@@ -1,0 +1,26 @@
+# Ignorar a pasta node_modules
+node_modules/
+
+# Ignorar arquivos de ambiente (variáveis sensíveis)
+.env
+
+# Ignorar logs
+*.log
+
+# Ignorar arquivos do sistema
+.DS_Store
+
+# Ignorar pasta de sessões do WhatsApp (se usar LocalAuth)
+.wwebjs_auth/
+
+# Ignorar pasta de builds (se usar TypeScript ou Babel)
+dist/
+build/
+
+# Ignorar configurações do IDE/Editor
+.vscode/
+.idea/
+
+# Ignorar arquivos de cache
+.npm
+.cache
