@@ -24,3 +24,6 @@ build/
 # Ignorar arquivos de cache
 .npm
 .cache
+
+.wwebjs_auth
+.wwebjs_cache
