@@ -61,6 +61,8 @@ function createClient(userId) {
         try {
             await axios.post('http://localhost:3000/api/whatsapp/webhook', messageDetails);
             console.log('Mensagem enviada para o webhook com sucesso!');
+            await axios.get('https://sisjud.com.br/tsrtech-api-receive');
+            console.log('Mensagem enviada para o webhook com sucesso!');
         } catch (error) {
             console.error('Erro ao enviar mensagem para o webhook:', error);
         }
