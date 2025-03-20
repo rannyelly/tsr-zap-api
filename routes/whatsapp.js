@@ -107,4 +107,21 @@ router.get('/messages', async (req, res) => {
     res.json({ messages });
 });
 
+router.get('/messages/:from', async (req, res) => {
+    const { userId } = req.query;
+    const { from } = req.params; // Número do remetente
+
+    const client = clients.get(userId);
+
+    if (!client) {
+        console.error(`Cliente não encontrado para o userId: ${userId}`);
+        return res.status(404).json({ error: 'Cliente não encontrado' });
+    }
+
+    // Filtrar mensagens pelo número do remetente
+    const filteredMessages = messages.filter(msg => msg.from === from);
+
+    res.json({ messages: filteredMessages });
+});
+
 module.exports = router;
